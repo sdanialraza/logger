@@ -1,0 +1,10 @@
+# auto generated
+CHANGELOG.md
+LICENSE
+
+# dependencies
+node_modules
+pnpm-lock.yaml
+
+# production
+dist
