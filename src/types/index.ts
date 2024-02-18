@@ -7,9 +7,9 @@ export type LoggerOptions = {
    *
    * A `.log` file is recommended
    */
-  logsFilePath?: string
+  logsFilePath?: string;
   /**
    * The options for the timestamp
    */
-  timestamp?: Intl.DateTimeFormatOptions
-}
+  timestamp?: Intl.DateTimeFormatOptions;
+};

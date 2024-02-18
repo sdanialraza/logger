@@ -1,6 +1,6 @@
-import { lightBlue, lightGreen, lightRed, red, white, yellow } from "kolorist"
-import type { LoggerOptions } from "./types/index.js"
-import { formatMessage } from "./util/index.js"
+import { lightBlue, lightGreen, lightRed, red, white, yellow } from "kolorist";
+import type { LoggerOptions } from "./types/index.js";
+import { formatMessage } from "./util/index.js";
 
 /**
  * The different types of logs that can be used
@@ -20,7 +20,7 @@ enum LogType {
  *
  * @internal
  */
-type LogOptions = LoggerOptions & { type?: LogType }
+type LogOptions = LoggerOptions & { type?: LogType };
 
 /**
  * A logger class that provides methods for logging messages with different log types.
@@ -45,7 +45,7 @@ export class Logger {
   /**
    * The default options for the logger
    */
-  public options: LoggerOptions
+  public options: LoggerOptions;
 
   /**
    * Creates a new logger instance
@@ -55,13 +55,13 @@ export class Logger {
    */
   public constructor(options?: LoggerOptions) {
     if (options) {
-      this.options = options
-      return
+      this.options = options;
+      return;
     }
 
     this.options = {
       timestamp: { hour: "2-digit", minute: "2-digit", second: "2-digit", fractionalSecondDigits: 3 },
-    }
+    };
   }
 
   /**
@@ -69,7 +69,7 @@ export class Logger {
    *
    * @internal
    */
-  static readonly #instance = new Logger()
+  static readonly #instance = new Logger();
 
   /**
    * The internal log function
@@ -79,9 +79,9 @@ export class Logger {
    * @internal
    */
   #log(message: TemplateStringsArray | string, options: LogOptions): void {
-    const messageString = typeof message === "string" ? message : message.join("")
-    const timestampOptions = options.timestamp ?? this.options.timestamp
-    const logsFilePath = options.logsFilePath ?? this.options.logsFilePath
+    const messageString = typeof message === "string" ? message : message.join("");
+    const timestampOptions = options.timestamp ?? this.options.timestamp;
+    const logsFilePath = options.logsFilePath ?? this.options.logsFilePath;
 
     switch (options.type) {
       case LogType.Critical:
@@ -91,12 +91,12 @@ export class Logger {
             logType: "CRITICAL",
             message: messageString,
             timestampOptions,
-          })
+          });
 
-          console.error(lightRed(formattedMessage))
+          console.error(lightRed(formattedMessage));
         }
 
-        break
+        break;
       case LogType.Debug:
         {
           const formattedMessage = formatMessage({
@@ -104,12 +104,12 @@ export class Logger {
             logType: "Debug",
             message: messageString,
             timestampOptions,
-          })
+          });
 
-          console.debug(lightBlue(formattedMessage))
+          console.debug(lightBlue(formattedMessage));
         }
 
-        break
+        break;
       case LogType.Error:
         {
           const formattedMessage = formatMessage({
@@ -117,12 +117,12 @@ export class Logger {
             logType: "Error",
             message: messageString,
             timestampOptions,
-          })
+          });
 
-          console.error(red(formattedMessage))
+          console.error(red(formattedMessage));
         }
 
-        break
+        break;
       case LogType.Info:
         {
           const formattedMessage = formatMessage({
@@ -130,12 +130,12 @@ export class Logger {
             logType: "Info",
             message: messageString,
             timestampOptions,
-          })
+          });
 
-          console.info(lightGreen(formattedMessage))
+          console.info(lightGreen(formattedMessage));
         }
 
-        break
+        break;
       case LogType.Warn:
         {
           const formattedMessage = formatMessage({
@@ -143,21 +143,21 @@ export class Logger {
             logType: "Warn",
             message: messageString,
             timestampOptions,
-          })
+          });
 
-          console.warn(yellow(formattedMessage))
+          console.warn(yellow(formattedMessage));
         }
 
-        break
+        break;
       default: {
         const formattedMessage = formatMessage({
           logsFilePath,
           logType: "Log",
           message: messageString,
           timestampOptions,
-        })
+        });
 
-        console.log(white(formattedMessage))
+        console.log(white(formattedMessage));
       }
     }
   }
@@ -168,7 +168,7 @@ export class Logger {
    * @param options - The default options to set
    */
   public setOptions(options: LoggerOptions): void {
-    this.options = options
+    this.options = options;
   }
 
   /**
@@ -178,7 +178,7 @@ export class Logger {
    * @param options - The options to use when logging, overriding the default options
    */
   public critical(message: TemplateStringsArray | string, options?: LoggerOptions): void {
-    this.#log(message, { ...options, type: LogType.Critical })
+    this.#log(message, { ...options, type: LogType.Critical });
   }
 
   /**
@@ -188,7 +188,7 @@ export class Logger {
    * @param options - The options to use when logging
    */
   public static critical(message: TemplateStringsArray | string, options?: LoggerOptions): void {
-    this.#instance.critical(message, options)
+    this.#instance.critical(message, options);
   }
 
   /**
@@ -198,7 +198,7 @@ export class Logger {
    * @param options - The options to use when logging, overriding the default options
    */
   public debug(message: TemplateStringsArray | string, options?: LoggerOptions): void {
-    this.#log(message, { ...options, type: LogType.Debug })
+    this.#log(message, { ...options, type: LogType.Debug });
   }
 
   /**
@@ -208,7 +208,7 @@ export class Logger {
    * @param options - The options to use when logging
    */
   public static debug(message: TemplateStringsArray | string, options?: LoggerOptions): void {
-    this.#instance.debug(message, options)
+    this.#instance.debug(message, options);
   }
 
   /**
@@ -218,7 +218,7 @@ export class Logger {
    * @param options - The options to use when logging, overriding the default options
    */
   public error(message: TemplateStringsArray | string, options?: LoggerOptions): void {
-    this.#log(message, { ...options, type: LogType.Error })
+    this.#log(message, { ...options, type: LogType.Error });
   }
 
   /**
@@ -228,7 +228,7 @@ export class Logger {
    * @param options - The options to use when logging
    */
   public static error(message: TemplateStringsArray | string, options?: LoggerOptions): void {
-    this.#instance.error(message, options)
+    this.#instance.error(message, options);
   }
 
   /**
@@ -238,7 +238,7 @@ export class Logger {
    * @param options - The options to use when logging, overriding the default options
    */
   public info(message: TemplateStringsArray | string, options?: LoggerOptions): void {
-    this.#log(message, { ...options, type: LogType.Info })
+    this.#log(message, { ...options, type: LogType.Info });
   }
 
   /**
@@ -248,7 +248,7 @@ export class Logger {
    * @param options - The options to use when logging
    */
   public static info(message: TemplateStringsArray | string, options?: LoggerOptions): void {
-    this.#instance.info(message, options)
+    this.#instance.info(message, options);
   }
 
   /**
@@ -258,7 +258,7 @@ export class Logger {
    * @param options - The options to use when logging, overriding the default options
    */
   public log(message: TemplateStringsArray | string, options?: LoggerOptions): void {
-    this.#log(message, { ...options })
+    this.#log(message, { ...options });
   }
 
   /**
@@ -268,7 +268,7 @@ export class Logger {
    * @param options - The options to use when logging
    */
   public static log(message: TemplateStringsArray | string, options?: LoggerOptions): void {
-    this.#instance.log(message, options)
+    this.#instance.log(message, options);
   }
 
   /**
@@ -278,7 +278,7 @@ export class Logger {
    * @param options - The options to use when logging, overriding the default options
    */
   public warn(message: TemplateStringsArray | string, options?: LoggerOptions): void {
-    this.#log(message, { ...options, type: LogType.Warn })
+    this.#log(message, { ...options, type: LogType.Warn });
   }
 
   /**
@@ -288,6 +288,6 @@ export class Logger {
    * @param options - The options to use when logging
    */
   public static warn(message: TemplateStringsArray | string, options?: LoggerOptions): void {
-    this.#instance.warn(message, options)
+    this.#instance.warn(message, options);
   }
 }
