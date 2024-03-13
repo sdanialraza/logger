@@ -5,6 +5,7 @@ LICENSE
 # dependencies
 node_modules
 pnpm-lock.yaml
+renovate.json
 
 # production
 dist
