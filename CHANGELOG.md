@@ -1,5 +1,11 @@
 # @sdanialraza/logger
 
+## 1.0.2
+
+### Patch Changes
+
+- b1d024d: Update dependencies
+
 ## 1.0.1
 
 ### Patch Changes
