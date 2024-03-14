@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/package.json",
   "name": "@sdanialraza/logger",
   "description": "A simple and lightweight logger",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
